@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table_style.css') }}">
+</head>
+<body>
+    <h1>Game</h1>
+    <form id="wordForm" action="/game/{{ letters }}" method="post">
+        <label for="word">Enter a word:</label>
+        <input type="text" id="word" name="word" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    {% if letters >= 4 %}
+                        <th></th>
+                    {% endif %}
+                    {% if letters == 5 %}
+                        <th></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            <p>{{ entered_words }}</p>
+            <p>{{ count_of_words_entered }}</p>
+            {% for word in entered_words %}
+                <tr>
+                    {% for i in word %}
+                        <td class="letter">{{ i }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            {% for row in range(attemps) %}
+                <tr>
+                    {% for i in range(letters) %}
+                            <td class="letter">=</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+
+<!--                <tr>-->
+<!--                    {% for i in word %}-->
+<!--                        <td class="letter">{{ i }}</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">2</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">3</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">4</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">5</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">6</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    {% for i in range(letters) %}-->
+<!--                        <td class="letter">7</td>-->
+<!--                    {% endfor %}-->
+<!--                </tr>-->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

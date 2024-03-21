@@ -1,0 +1,5 @@
+SQLAlchemy
+flask
+pymorphy3
+requests
+pillow
